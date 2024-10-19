@@ -36,6 +36,10 @@ const InterviewForm = () => {
     setEmailInput(e.target.value);
   };
 
+  const handleDropDown = (value)=>{
+    setFormData({...formData,experienceLevel:value})
+  }
+
   const handleKeyDown = (e) => {
     if (e.key === ' ') {
       e.preventDefault();
@@ -78,6 +82,7 @@ const InterviewForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
+    console.log('Interview data submitted:', formData);
     if (Object.keys(validationErrors).length === 0) {
       console.log('Interview data submitted:', formData);
       const isSuccess = postJob(dispatch, formData)
@@ -104,7 +109,7 @@ const InterviewForm = () => {
       </div>
       <div>
         <div className='block'>Experience Level</div>
-        <Dropdown options={experienceOptions} onChange={(e) => handleChange({target: {name: 'experienceLevel', value: e.value}})} value={formData.experienceLevel} />
+        <Dropdown options={experienceOptions} onChange={handleDropDown} value={formData.experienceLevel} />
       </div>
       <div>
         <div className='block'>Candidates</div>
