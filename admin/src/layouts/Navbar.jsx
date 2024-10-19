@@ -1,8 +1,12 @@
 import React from 'react'
 import useAuth from '../hooks/useAuth'
+import { removeToken } from '../utils/api'
+import { useDispatch } from 'react-redux'
+import { logout } from '../store/slice/authSlice'
 
 const Navbar = () => {
     const {isAuth} = useAuth()
+    const dispatch = useDispatch()
   return (
     <div className='w-full h-16 shadow-md border-b-gray-400 flex items-center p-3 justify-between'>
         <img src="image.png" className='h-10' alt="" />
@@ -13,7 +17,10 @@ const Navbar = () => {
                 <details className="dropdown">
   <summary className="btn m-1">Your Name</summary>
   <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-    <li><a>Logout</a></li>
+    <li onClick={()=>{
+      removeToken()
+      dispatch(logout())
+    }}><a>Logout</a></li>
   </ul>
 </details>
                 </>
