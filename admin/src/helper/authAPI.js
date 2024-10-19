@@ -28,7 +28,7 @@ export const getEmailVerifyOTPAPI = async (dispatch, formData) => {
         if (response?.data?.token) {
           
           await setToken(response?.data?.token?.token);
-          getUserDetailsAPI()
+          getUserDetailsAPI(dispatch)
 
         }
         return response.data.success;
@@ -49,7 +49,7 @@ export const getSmsVerifyOTPAPI = async (dispatch, formData) => {
         if (response?.data?.token) {
           
           await setToken(response?.data?.token?.token);
-          getUserDetailsAPI()
+          getUserDetailsAPI(dispatch)
 
         }
         return response.data.success;
